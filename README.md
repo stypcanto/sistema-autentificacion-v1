@@ -2,7 +2,12 @@
 
 Este proyecto es un sistema de autenticación completo con **React** en el frontend y **Node.js** con **Express** en el backend. Proporciona las funcionalidades esenciales para la gestión de usuarios y autenticación segura, usando las mejores prácticas de seguridad.
 
-Comparto este proyecto ya que es una muy buena herramienta para entrenar como funciona el front-end y el back-end combinando multiples tecnologías.
+Comparto este proyecto ya que es una muy buena herramienta para entrenar como funciona el front-end y el back-end combinando multiples tecnologías:
+
+- Frontend: React, Axios
+- Backend: Node.js, Express
+- Base de datos: PostgreSQL
+- Autenticación: JWT, bcrypt
 
 ---
 
@@ -38,7 +43,7 @@ git clone <https://github.com/stypcanto/sistema-autentificacion-v1>
   ```
  3. Ejecuta el servidor del backend:
 
-    ```bash
+ ```bash
         node server.js
 
   ```
@@ -46,11 +51,8 @@ git clone <https://github.com/stypcanto/sistema-autentificacion-v1>
    ```bash
    npm start
 
-  ```
-Frontend: React, Axios
-Backend: Node.js, Express
-Base de datos: PostgreSQL
-Autenticación: JWT, bcrypt
+ 
+
 
 ---
 📥 Apuntes importantes creado para recordar
@@ -95,7 +97,7 @@ En el frontend, es necesario instalar la dependencia axios para realizar las sol
 npm install axios
 
 
-
+```
 ## 📜 Derecho de autor
 
 Este proyecto es de propiedad de **Ing. Styp Canto**, CIP. 131278.
