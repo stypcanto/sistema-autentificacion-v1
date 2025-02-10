@@ -2,6 +2,8 @@
 
 Este proyecto es un sistema de autenticación completo con **React** en el frontend y **Node.js** con **Express** en el backend. Proporciona las funcionalidades esenciales para la gestión de usuarios y autenticación segura, usando las mejores prácticas de seguridad.
 
+Comparto este proyecto ya que es una muy buena herramienta para entrenar como funciona el front-end y el back-end combinando multiples tecnologías.
+
 ---
 
 ## 🚀 Funcionalidades
@@ -13,6 +15,45 @@ Este proyecto es un sistema de autenticación completo con **React** en el front
 - **Protección de rutas privadas**: Solo los usuarios autenticados pueden acceder a rutas privadas del sistema.
 
 ---
+📥 Instalación
+
+1. Clona este repositorio:
+
+```bash
+git clone <https://github.com/stypcanto/sistema-autentificacion-v1>
+
+```
+2. Navega a la carpeta del proyecto y instala las dependencias:
+    - En el backend:
+    ```bash
+
+        cd backend
+        npm install
+    ```
+    - En el frontend:
+     ```bash
+        cd frontend
+        npm install
+ 
+  ```
+ 3. Ejecuta el servidor del backend:
+
+    ```bash
+        node server.js
+
+  ```
+ 4. Ejecuta el frontend con:
+   ```bash
+   npm start
+
+  ```
+Frontend: React, Axios
+Backend: Node.js, Express
+Base de datos: PostgreSQL
+Autenticación: JWT, bcrypt
+
+---
+📥 Apuntes importantes creado para recordar
 
 ## 🔧 Backend
 
@@ -53,41 +94,7 @@ En el frontend, es necesario instalar la dependencia axios para realizar las sol
 ```bash
 npm install axios
 
-```
-📥 Instalación
 
-1. Clona este repositorio:
-
-```bash
-git clone <https://github.com/stypcanto/sistema-autentificacion-v1>
-
-```
-2. Navega a la carpeta del proyecto y instala las dependencias:
-    - En el backend:
-    ```bash
-
-        cd backend
-        npm install
-    ```
-    - En el frontend:
-     ```bash
-        cd frontend
-        npm install
- 
-  ```
- 3. Ejecuta el servidor del backend:
-  ```bash
-  node server.js
-  ```
- 4. Ejecuta el frontend con:
-   ```bash
-   npm start
-
-  ```
-Frontend: React, Axios
-Backend: Node.js, Express
-Base de datos: PostgreSQL
-Autenticación: JWT, bcrypt
 
 ## 📜 Derecho de autor
 
