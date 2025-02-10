@@ -1,5 +1,7 @@
+// src/pages/Profile.tsx
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getProfile } from '../api'; // Importamos getProfile en lugar de loginUser
 
 // Definir una interfaz para el usuario
 interface User {
@@ -8,39 +10,57 @@ interface User {
 }
 
 const Profile = () => {
-  const [user, setUser] = useState<User | null>(null); // Establecer tipo explícito para el estado de user
-  const [loading, setLoading] = useState(true); // Nuevo estado de carga
+  const [user, setUser] = useState<User | null>(null); // Estado para el usuario
+  const [loading, setLoading] = useState(true);          // Estado para la carga
+  const [error, setError] = useState('');                // Estado para errores
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const fetchProfile = async () => {
+      const token = localStorage.getItem('token');
 
-    if (!token) {
-      navigate('/login');
-    } else {
-      const userData = localStorage.getItem('user');
-      if (userData) {
-        setUser(JSON.parse(userData));
+      if (!token) {
+        // Si no existe token, redirigimos al login
+        navigate('/login');
+        return;
       }
-    }
 
-    setLoading(false); // Cambiar el estado de carga a falso después de la verificación
+      try {
+        // Llamamos a la función getProfile pasando el token
+        const data = await getProfile(token);
+
+        // Suponiendo que el back-end retorna { user: { ... } } en caso de éxito
+        if (data.user) {
+          setUser(data.user);
+        } else {
+          setError(data.message || 'No se pudieron obtener los datos del usuario.');
+        }
+      } catch (err) {
+        console.error('Error al obtener el perfil:', err);
+        setError('Error al obtener el perfil.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
   }, [navigate]);
 
   if (loading) {
-    return <div>Loading...</div>; // Mostrar carga mientras se obtienen los datos
+    return <div>Loading...</div>; // Muestra un indicador de carga mientras se obtiene la información
   }
 
   return (
-    <div>
-      <h1>Profile</h1>
+    <div className="p-4">
+      <h1 className="text-3xl font-bold mb-4">Profile</h1>
+      {error && <p className="text-red-500 mb-4">{error}</p>}
       {user ? (
         <>
-          <p>Username: {user.username}</p>
-          <p>Email: {user.email}</p>
+          <p className="text-lg">Username: {user.username}</p>
+          <p className="text-lg">Email: {user.email}</p>
         </>
       ) : (
-        <p>No user data available.</p> // Mensaje si no hay datos del usuario
+        <p>No user data available.</p>
       )}
     </div>
   );

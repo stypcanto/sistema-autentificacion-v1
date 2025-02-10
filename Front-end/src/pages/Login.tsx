@@ -1,37 +1,45 @@
+// src/pages/Login.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../api';  // Asumimos que tienes esta función de API que hace la solicitud al backend
 
 const Login = () => {
+  // Estados para almacenar email, password y mensajes de error
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  // Función para manejar el envío del formulario
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    console.log("Enviando datos: ", { email, password }); // Verifica estos valores
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      // Llamamos a la función loginUser pasándole email y password
+      const data = await loginUser(email, password);
 
-      const data = await response.json();
-
-      if (response.ok) {
+      // Verificamos si se recibió el token
+      if (data.token) {
+        // Guardamos el token en el localStorage
         localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
+
+        // Opcionalmente, también puedes guardar información del usuario si el backend la devuelve
+        if (data.user) {
+          localStorage.setItem('user', JSON.stringify(data.user));
+        }
+
+        // Navegamos a la página de inicio (o la que desees)
         navigate('/home');
       } else {
-        setError(data.message);
+        // Si no hay token, mostramos el mensaje de error retornado por el servidor
+        setError(data.message || 'Error al iniciar sesión');
       }
-    } catch (error) {
-      // Usar el error capturado aquí para mostrarlo
+    } catch (err) {
+      // Si ocurre un error en la solicitud
       setError('Error al iniciar sesión');
-      console.error('Login error:', error); // Solo para depuración
+      console.error('Login error:', err);
     }
   };
 

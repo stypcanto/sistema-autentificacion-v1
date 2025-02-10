@@ -25,4 +25,72 @@ psql -U postgres -h 127.0.0.1 -p 5432 -d auth_db
 Para verificar que la conexión a la base de datos está funcionando correctamente, revisa la configuración en el archivo db-test.js y ejecuta el siguiente comando:
 
 ```bash
+
 node db-test.js
+
+```
+También se creó una base de datos llamada auth_db y una tabla users:
+
+```bash
+CREATE TABLE users (
+    id BIGSERIAL PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password TEXT NOT NULL
+);
+
+```
+Es importante instalar la dependencia CORS:
+
+```bash
+npm install cors
+
+```
+⚙️ Frontend
+
+En el frontend, es necesario instalar la dependencia axios para realizar las solicitudes HTTP:
+
+```bash
+npm install axios
+
+```
+📥 Instalación
+
+1. Clona este repositorio:
+
+```bash
+git clone <https://github.com/stypcanto/sistema-autentificacion-v1>
+
+```
+2. Navega a la carpeta del proyecto y instala las dependencias:
+    - En el backend:
+    ```bash
+
+        cd backend
+        npm install
+    ```
+    - En el frontend:
+     ```bash
+        cd frontend
+        npm install
+ 
+  ```
+ 3. Ejecuta el servidor del backend:
+  ```bash
+  node server.js
+  ```
+ 4. Ejecuta el frontend con:
+   ```bash
+   npm start
+
+  ```
+Frontend: React, Axios
+Backend: Node.js, Express
+Base de datos: PostgreSQL
+Autenticación: JWT, bcrypt
+
+## 📜 Derecho de autor
+
+Este proyecto es de propiedad de **Ing. Styp Canto**, CIP. 131278.
+
+Contacto: [styp611@outlook.com](mailto:styp611@outlook.com)
