@@ -21,7 +21,8 @@ El backend está construido con **Node.js** y **Express**, y utiliza **PostgreSQ
 ```bash
 psql -U postgres -h 127.0.0.1 -p 5432 -d auth_db
 
+```
 Para verificar que la conexión a la base de datos está funcionando correctamente, revisa la configuración en el archivo db-test.js y ejecuta el siguiente comando:
 
-
+```bash
 node db-test.js
